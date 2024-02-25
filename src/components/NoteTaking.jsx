@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import useNotes from "../hooks/useNotes";
+// add curly braces to useNotes import
+import { useNotes } from '../hooks/useNotes'
 
 export default function NoteTaking() {
-  const [notes, dispatch] = useNotes();
+  const { notes, dispatch } = useNotes();
   const [filter, setFilter] = useState("Search");
   const [editText, setEditText] = useState(" ");
   const [editID, setEditID] = useState(null);
@@ -21,9 +22,9 @@ export default function NoteTaking() {
       <div className="main-content">
         <input type="text" />
         <ul>
-          {notes.map((note) => (
+          {/* {notes.map((note) => (
             <li></li>
-          ))}
+          ))} */}
         </ul>
       </div>
     </>
