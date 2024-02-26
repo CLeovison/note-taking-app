@@ -20,7 +20,7 @@ export default function NoteTaking() {
       </form>
 
       <div className="main-content">
-        <input type="text" />
+    
         <ul>
           {/* {notes.map((note) => (
             <li></li>
