@@ -17,10 +17,11 @@ export default function NoteTaking() {
       <form>
         <input type="text" />
         <button type="submit">Submit</button>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
       </form>
 
       <div className="main-content">
-        <input type="text" />
+  
         <ul>
           {/* {notes.map((note) => (
             <li></li>
