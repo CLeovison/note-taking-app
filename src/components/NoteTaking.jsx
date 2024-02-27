@@ -7,33 +7,31 @@ export default function NoteTaking() {
   const [filter, setFilter] = useState("Search");
   const [editText, setEditText] = useState(" ");
   const [editID, setEditID] = useState(null);
-  const [title, setTitle] = useState("");
+  const [titles, setTitles] = useState("");
+  const [textArea, setTextArea] = useState("");
 
   const handleSubmit = (e, title, content) => {
     e.preventDefault();
     dispatch({ type: "ADD_NOTE", title, content });
-    setTitle("");
- 
+    setTitles("");
+    setTextArea(" ");
+    console.log(`${titles}`);
+    console.log(`${textArea}`);
   };
-  // const handleEdit = (id, text) => {
-  //   setEditID(id);
-  //   setEditText(text);
-  // };
   return (
     <>
-      <form>
-        <input type="text" />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={titles}
+          onChange={(e) => setTitles(e.target.value)}
+        />
         <button type="submit">Submit</button>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <textarea
+          value={textArea}
+          onChange={(e) => setTextArea(e.target.value)}
+        ></textarea>
       </form>
-
-      <div className="main-content">
-        <input type="text" />
-        <ul>
-          {/* {notes.map((note) => (
-            <li></li>
-          ))} */}
-        </ul>
     </>
   );
 }
