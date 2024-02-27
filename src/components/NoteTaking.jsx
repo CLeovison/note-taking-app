@@ -7,21 +7,27 @@ export default function NoteTaking() {
   const [filter, setFilter] = useState("Search");
   const [editText, setEditText] = useState(" ");
   const [editID, setEditID] = useState(null);
+  const [title, setTitle] = useState("")
 
   const handleEdit = (id, text) => {
     setEditID(id);
     setEditText(text);
   };
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    dispatch({type: "ADD_NOTE", title, content})
+    setTitle("");
+  }
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input type="text" />
         <button type="submit">Submit</button>
         <textarea name="" id="" cols="30" rows="10"></textarea>
       </form>
 
       <div className="main-content">
-        <input type="text" />
+      
         <ul>
           {/* {notes.map((note) => (
             <li></li>
