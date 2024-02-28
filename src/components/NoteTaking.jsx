@@ -14,7 +14,7 @@ export default function NoteTaking() {
     e.preventDefault();
     dispatch({ type: "ADD_NOTE", title, content });
     setTitles("");
-    setTextArea(" ");
+    setTextArea("");
     console.log(`${titles}`);
     console.log(`${textArea}`);
   };
@@ -26,12 +26,15 @@ export default function NoteTaking() {
           value={titles}
           onChange={(e) => setTitles(e.target.value)}
         />
-        <button type="submit">Submit</button>
+      
         <textarea
           value={textArea}
           onChange={(e) => setTextArea(e.target.value)}
         ></textarea>
+          <button type="submit">Submit</button>
       </form>
+
+      
     </>
   );
 }
