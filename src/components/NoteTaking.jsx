@@ -15,7 +15,8 @@ export default function NoteTaking() {
     dispatch({ type: "ADD_NOTE", title, content });
     setTitles("");
     setTextArea(" ");
-
+    console.log(`${titles}`);
+    console.log(`${textArea}`);
   };
   return (
     <>
@@ -25,13 +26,12 @@ export default function NoteTaking() {
           value={titles}
           onChange={(e) => setTitles(e.target.value)}
         />
-     
+        <button type="submit">Submit</button>
         <textarea
           value={textArea}
           className={styles.textarea}
           onChange={(e) => setTextArea(e.target.value)}
         ></textarea>
-           <button type="submit">Submit</button>
       </form>
 
       <div className={styles.maincontent}>
@@ -41,6 +41,8 @@ export default function NoteTaking() {
           ))}
         </ul>
       </div>
+
+      
     </>
   );
 }
