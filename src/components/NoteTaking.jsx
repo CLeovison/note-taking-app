@@ -15,8 +15,7 @@ export default function NoteTaking() {
     dispatch({ type: "ADD_NOTE", title, content });
     setTitles("");
     setTextArea(" ");
-    console.log(`${titles}`);
-    console.log(`${textArea}`);
+
   };
   return (
     <>
@@ -37,7 +36,12 @@ export default function NoteTaking() {
       <div className={styles.maincontent}>
         <ul>
           {notes.map(note =>(
-            <li key={note.id}></li>
+            <li key={note.id}>
+              {editID !== note.id && (
+                <label>{note.title}</label>
+        
+              )}
+            </li>
           ))}
         </ul>
       </div>
