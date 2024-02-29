@@ -15,8 +15,7 @@ export default function NoteTaking() {
     dispatch({ type: "ADD_NOTE", title, content });
     setTitles("");
     setTextArea("");
-    console.log(`${titles}`);
-    console.log(`${textArea}`);
+
   };
   return (
     <>
