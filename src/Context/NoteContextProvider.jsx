@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useReducer } from 'react';
 // add curly braces to the noteReducer import
 import { noteReducer } from '../hooks/noteReducer'; 
 

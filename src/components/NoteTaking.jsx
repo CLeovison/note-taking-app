@@ -14,14 +14,16 @@ export default function NoteTaking() {
     e.preventDefault();
     dispatch({ type: "ADD_NOTE", title, content });
     setTitles("");
-    setTextArea(" ");
+    setTextArea("");
+
 
   };
-  const handleEdit = (id, text, content) =>{
-      setTitles(text)
-      setEditID(id)
-      setTextArea(content)
-  }
+  const handleEdit = (id, text, content) => {
+    setTitles(text);
+    setEditID(id);
+    setTextArea(content);
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit} className={styles.forms}>
@@ -41,11 +43,13 @@ export default function NoteTaking() {
 
       <div className={styles.maincontent}>
         <ul>
-          {notes.map(note =>(
+          {notes.map((note) => (
             <li key={note.id}>
               {editID !== note.id && (
-                <label>{note.title}</label>
-        
+                <>
+                  <label>{note.title}</label>
+                  <span>{note.content}</span>
+                </>
               )}
             </li>
           ))}
