@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // add curly braces to useNotes import
 import { useNotes } from "../hooks/useNotes";
-import styles from "../components/mains.module.css"
+import styles from "../components/mains.module.css";
 export default function NoteTaking() {
   const { notes, dispatch } = useNotes();
   const [filter, setFilter] = useState("Search");
@@ -15,8 +15,12 @@ export default function NoteTaking() {
     dispatch({ type: "ADD_NOTE", title, content });
     setTitles("");
     setTextArea("");
-
   };
+  const handleEdit = (id, text, content) =>{
+      setTitles(text)
+      setEditID(id)
+      setTextArea(content)
+  }
   return (
     <>
       <form onSubmit={handleSubmit} className={styles.forms}>
@@ -25,26 +29,24 @@ export default function NoteTaking() {
           value={titles}
           onChange={(e) => setTitles(e.target.value)}
         />
-        <button type="submit">Submit</button>
+
         <textarea
           value={textArea}
           className={styles.textarea}
           onChange={(e) => setTextArea(e.target.value)}
         ></textarea>
+        <button type="submit">Submit</button>
       </form>
 
       <div className={styles.maincontent}>
         <ul>
-          {notes.map(note =>(
-            <li key={note.id}>
-
-              
+          {notes.map((note) => (
+            <li key={note?.id}>
+              {editID !== note.id && <label>{note.title}</label>}
             </li>
           ))}
         </ul>
       </div>
-
-      
     </>
   );
 }
