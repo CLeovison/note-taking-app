@@ -8,8 +8,11 @@
 .textarea{
     margin: 10px;
     resize: none;
+    outline: none;
 }
-
+input{
+    outline: none;
+}
 .maincontent{
     display: flex;
     flex-direction: column;
