@@ -25,11 +25,7 @@ export default function NoteTaking() {
 
 
   };
-  const handleEdit = (id, text, content) =>{
-      setTitles(text)
-      setEditID(id)
-      setTextArea(content)
-  }
+
   return (
     <>
       <form className={styles.forms}>
