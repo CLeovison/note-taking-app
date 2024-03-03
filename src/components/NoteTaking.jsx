@@ -5,25 +5,31 @@ import styles from "../components/mains.module.css";
 
 export default function NoteTaking() {
   const { notes, dispatch } = useNotes();
-  const [filter, setFilter] = useState("Search");
-  const [editText, setEditText] = useState(" ");
+  const [filters, setFilters] = useState("Search");
+  const [editText, setEditText] = useState("");
   const [editID, setEditID] = useState(null);
   const [titles, setTitles] = useState("");
   const [textArea, setTextArea] = useState("");
 
-  const handleEdit = (id, text, content) => {
-    setTitles(text);
-    setEditID(id);
-    setTextArea(content);
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch({ type: "ADD_NOTE", title: titles, content: textArea });
     setTitles("");
     setTextArea("");
   };
-  const handleDelete = (id) =>{
-    dispatch({type: "DELETE_NOTE", id})
+  const handleDelete = (id) => {
+    dispatch({ type: "DELETE_NOTE", id });
+  };
+  const handleSave = (id) => {
+    dispatch({ type: "EDIT_NOTE", id: id, title: titles, content: textArea });
+    setEditID(null);
+  };
+  const handleEdit = (id, title, content) => {
+    setEditID(id);
+    setTitles(title);
+    setTextArea(content);
+  };
+  const handleSearch = () =>{
 
   }
 
@@ -48,15 +54,28 @@ export default function NoteTaking() {
 
       <div className={styles.maincontent}>
         <ul>
-          {notes.map((note) => (
+          {notes.filter(note => setFilters(note)).map((note) => (
             <li key={note.id}>
+              
               {editID !== note.id && (
                 <>
                   <label>{note.title}</label>
                   <span>{note.content}</span>
                 </>
               )}
-              <button onClick={e => handleDelete(note.id)}>Delete</button>
+              {editID === note.id && (
+                <>
+                <input type="text" onChange={e => setTitles(e.target.value)}  defaultValue={note.title}/>
+                <textarea onChange={e => setTextArea(e.target.value)} defaultValue={note.content}/>
+                <button onClick={e => handleSave(note.id)}>Save</button>
+                </>
+              )}
+              {editID !== note.id && (
+                <>
+                  <button onClick={(e) => handleEdit(note.id, note.title, note.content)}>Edit {" "}</button>
+                </>
+              )}
+              <button onClick={(e) => handleDelete(note.id)}>Delete</button>
             </li>
           ))}
         </ul>
