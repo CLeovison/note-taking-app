@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // add curly braces to useNotes import
 import { useNotes } from "../hooks/useNotes";
 import styles from "../components/mains.module.css";
+import Search from "./Search";
 
 export default function NoteTaking() {
   const { notes, dispatch } = useNotes();
@@ -56,7 +57,7 @@ export default function NoteTaking() {
         <ul>
           {notes.filter(note => setFilters(note)).map((note) => (
             <li key={note.id}>
-              
+              <Search/>
               {editID !== note.id && (
                 <>
                   <label>{note.title}</label>
