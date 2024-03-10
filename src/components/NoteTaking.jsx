@@ -2,12 +2,10 @@ import React, { useState } from "react";
 // add curly braces to useNotes import
 import { useNotes } from "../hooks/useNotes";
 import styles from "../components/mains.module.css";
-import Search from "./Search";
 
 export default function NoteTaking() {
   const { notes, dispatch } = useNotes();
-  const [filters, setFilters] = useState("Search");
-  const [editText, setEditText] = useState("");
+
   const [editID, setEditID] = useState(null);
   const [titles, setTitles] = useState("");
   const [textArea, setTextArea] = useState("");
@@ -30,9 +28,6 @@ export default function NoteTaking() {
     setTitles(title);
     setTextArea(content);
   };
-  const handleSearch = () =>{
-
-  }
 
   return (
     <>
@@ -55,9 +50,8 @@ export default function NoteTaking() {
 
       <div className={styles.maincontent}>
         <ul>
-          {notes.filter(note => setFilters(note)).map((note) => (
+          {notes.map((note) => (
             <li key={note.id}>
-              <Search/>
               {editID !== note.id && (
                 <>
                   <label>{note.title}</label>
@@ -66,14 +60,27 @@ export default function NoteTaking() {
               )}
               {editID === note.id && (
                 <>
-                <input type="text" onChange={e => setTitles(e.target.value)}  defaultValue={note.title}/>
-                <textarea onChange={e => setTextArea(e.target.value)} defaultValue={note.content}/>
-                <button onClick={e => handleSave(note.id)}>Save</button>
+                  <input
+                    type="text"
+                    onChange={(e) => setTitles(e.target.value)}
+                    defaultValue={note.title}
+                  />
+                  <textarea
+                    onChange={(e) => setTextArea(e.target.value)}
+                    defaultValue={note.content}
+                  />
+                  <button onClick={(e) => handleSave(note.id)}>Save</button>
                 </>
               )}
               {editID !== note.id && (
                 <>
-                  <button onClick={(e) => handleEdit(note.id, note.title, note.content)}>Edit {" "}</button>
+                  <button
+                    onClick={(e) =>
+                      handleEdit(note.id, note.title, note.content)
+                    }
+                  >
+                    Edit{" "}
+                  </button>
                 </>
               )}
               <button onClick={(e) => handleDelete(note.id)}>Delete</button>
